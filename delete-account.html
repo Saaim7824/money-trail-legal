@@ -1,42 +1,235 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Money Trail - Delete Account</title>
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;max-width:860px;margin:40px auto;padding:0 16px;line-height:1.6}
-    .muted{color:#555}
-    a{word-break:break-word}
-  </style>
-</head>
-<body>
-  <h1>Money Trail — Account Deletion</h1>
-  <p class="muted">Use this page to request deletion of your Money Trail account and associated cloud data.</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Delete Account — Money Trail</title>
+    <meta name="description" content="Request deletion of your Money Trail account and cloud data." />
+    <style>
+      :root {
+        --bg: #0b1220;
+        --card: #0f172a;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --primary: #60a5fa;
+        --divider: #1f2937;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f8fafc;
+          --card: #ffffff;
+          --text: #0f172a;
+          --muted: #475569;
+          --border: #e5e7eb;
+          --primary: #2563eb;
+          --divider: #eef2f7;
+        }
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 28px 14px 42px;
+      }
+      h1 {
+        font-size: 28px;
+        margin: 0 0 6px 0;
+        letter-spacing: -0.02em;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: underline;
+        word-break: break-word;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.95em;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 18px;
+        margin: 14px 0;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+      }
+      h2 {
+        font-size: 18px;
+        margin: 0 0 10px 0;
+      }
+      p {
+        margin: 0 0 10px 0;
+        color: var(--muted);
+      }
+      ul, ol {
+        margin: 8px 0 10px 18px;
+        padding: 0;
+        color: var(--muted);
+      }
+      li {
+        margin: 6px 0;
+      }
+      .divider {
+        height: 1px;
+        background: var(--divider);
+        margin: 14px 0;
+      }
+      .pill {
+        display: inline-block;
+        padding: 2px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--muted);
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+      .note {
+        font-size: 13px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ✅ EDIT THESE PLACEHOLDERS -->
+    <script>
+      window.DEL_POLICY = {
+        APP_NAME: "Money Trail",
+        SUPPORT_EMAIL: "samk078688@gmail.com",
+        PRIVACY_URL: "https://saaim7824.github.io/money-trail-legal/privacy.html",
+        EFFECTIVE_DATE: "04 Jan 2026",
+        ETA_DAYS: "7–30"
+      };
+    </script>
 
-  <h2>How to request deletion</h2>
-  <ol>
-    <li>Email us from your registered sign-in email at: <strong>samk078688@gmail.com</strong></li>
-    <li>Subject: <code>Delete my Money Trail account</code></li>
-    <li>Include: your sign-in email and (optional) reason</li>
-  </ol>
+    <div class="wrap">
+      <header>
+        <h1>
+          Account Deletion
+          <span class="pill" id="appNamePill">Money Trail</span>
+        </h1>
+        <div class="meta">
+          <div>
+            Use this page to request deletion of your <strong id="appName1">Money Trail</strong> account
+            and associated cloud data.
+          </div>
+          <div style="margin-top: 6px">
+            <strong>Contact:</strong>
+            <a id="supportEmailLink" href="mailto:samk078688@gmail.com">samk078688@gmail.com</a>
+            <span style="margin: 0 10px; color: var(--divider)">•</span>
+            <strong>Privacy:</strong>
+            <a id="privacyUrlLink" href="#" target="_blank" rel="noopener noreferrer">Open</a>
+          </div>
+        </div>
+      </header>
 
-  <h2>What gets deleted</h2>
-  <ul>
-    <li>Your Money Trail account identity used for cloud sync.</li>
-    <li>Synced cloud data stored in our backend (Supabase), associated with your account.</li>
-  </ul>
+      <section class="card">
+        <h2>1) How to request deletion</h2>
+        <ol>
+          <li>
+            Email us from your registered sign-in email at:
+            <strong><a id="supportEmailLink2" href="mailto:samk078688@gmail.com">samk078688@gmail.com</a></strong>
+          </li>
+          <li>
+            Subject: <code>Delete my Money Trail account</code>
+          </li>
+          <li>
+            Include: your sign-in email and (optional) reason
+          </li>
+        </ol>
+        <p class="note">
+          We may ask you to verify account ownership to prevent unauthorized deletion requests.
+        </p>
+      </section>
 
-  <h2>What is not deleted automatically</h2>
-  <ul>
-    <li>Data stored locally on your device (delete by clearing app storage or uninstalling).</li>
-    <li>Google Drive backup files stored in your own Drive (delete them from Google Drive).</li>
-  </ul>
+      <section class="card">
+        <h2>2) What gets deleted</h2>
+        <ul>
+          <li>Your account identity used for Cloud Sync (if you enabled Cloud Sync).</li>
+          <li>Synced cloud data stored in our backend (Supabase), associated with your account.</li>
+        </ul>
 
-  <h2>Timeline</h2>
-  <p>We typically process deletion requests within <strong>7–30 days</strong>.</p>
+        <div class="divider"></div>
 
-  <h2>Contact</h2>
-  <p>Email: <strong>samk078688@gmail.com</strong></p>
-</body>
+        <h2 style="margin-top: 0">3) What is not deleted automatically</h2>
+        <ul>
+          <li>
+            Data stored locally on your device (delete by clearing app storage or uninstalling).
+          </li>
+          <li>
+            Google Drive backup files stored in your own Google Drive (delete them from Google Drive).
+          </li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>4) Timeline</h2>
+        <p>
+          We typically process deletion requests within <strong id="etaDays">7–30</strong> days.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>5) Contact</h2>
+        <p>
+          Email: <strong><a id="supportEmailLink3" href="mailto:samk078688@gmail.com">samk078688@gmail.com</a></strong>
+        </p>
+      </section>
+
+      <footer class="meta" style="margin-top: 18px">
+        © <span id="year"></span> <span id="appNameFooter">Money Trail</span>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        const cfg = window.DEL_POLICY || {};
+        const APP_NAME = cfg.APP_NAME || "Money Trail";
+        const SUPPORT_EMAIL = cfg.SUPPORT_EMAIL || "support@example.com";
+        const PRIVACY_URL = cfg.PRIVACY_URL || "#";
+        const ETA_DAYS = cfg.ETA_DAYS || "7–30";
+
+        const setText = (id, v) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = v;
+        };
+        const setHref = (id, href) => {
+          const el = document.getElementById(id);
+          if (el) el.setAttribute("href", href);
+        };
+
+        setText("appNamePill", APP_NAME);
+        setText("appName1", APP_NAME);
+        setText("appNameFooter", APP_NAME);
+        setText("etaDays", ETA_DAYS);
+        setText("year", new Date().getFullYear());
+
+        setHref("supportEmailLink", "mailto:" + SUPPORT_EMAIL);
+        setHref("supportEmailLink2", "mailto:" + SUPPORT_EMAIL);
+        setHref("supportEmailLink3", "mailto:" + SUPPORT_EMAIL);
+
+        const s1 = document.getElementById("supportEmailLink");
+        const s2 = document.getElementById("supportEmailLink2");
+        const s3 = document.getElementById("supportEmailLink3");
+        if (s1) s1.textContent = SUPPORT_EMAIL;
+        if (s2) s2.textContent = SUPPORT_EMAIL;
+        if (s3) s3.textContent = SUPPORT_EMAIL;
+
+        setHref("privacyUrlLink", PRIVACY_URL);
+      })();
+    </script>
+  </body>
 </html>
