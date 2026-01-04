@@ -55,6 +55,11 @@
         color: var(--primary);
         text-decoration: underline;
       }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.95em;
+      }
       .card {
         background: var(--card);
         border: 1px solid var(--border);
@@ -78,7 +83,8 @@
       strong {
         color: var(--text);
       }
-      ul {
+      ul,
+      ol {
         margin: 8px 0 10px 18px;
         padding: 0;
         color: var(--muted);
@@ -105,21 +111,35 @@
         margin-left: 8px;
         vertical-align: middle;
       }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+      .kbd {
+        display: inline-block;
+        padding: 2px 8px;
+        border: 1px solid var(--border);
+        border-bottom-width: 2px;
+        border-radius: 10px;
+        font-size: 12px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+      }
     </style>
   </head>
   <body>
-    <!--
-      ✅ EDIT THESE PLACEHOLDERS
-    -->
+    <!-- ✅ EDIT THESE PLACEHOLDERS -->
     <script>
-      // If you prefer, edit these directly in the HTML below instead of JS.
       window.APP_POLICY = {
         APP_NAME: "Money Trail",
         DEVELOPER_NAME: "Sam",
         SUPPORT_EMAIL: "samk078688@gmail.com",
-        WEBSITE_URL:
-          "https://saaim7824.github.io/money-trail-legal/privacy-policy.html",
-        EFFECTIVE_DATE: "25 Dec 2025",
+        PRIVACY_URL: "https://saaim7824.github.io/money-trail-legal/privacy.html",
+        DELETE_URL: "https://saaim7824.github.io/money-trail-legal/delete-account.html",
+        EFFECTIVE_DATE: "04 Jan 2026",
+        CLOUD_SYNC_IS_PRO_ONLY: true, // set false if you ever allow free sync
+        ADS_MAY_BE_ENABLED: true // set false if you ship without ads
       };
     </script>
 
@@ -130,25 +150,27 @@
           <span class="pill" id="appNamePill">Money Trail</span>
         </h1>
         <div class="meta">
-          <div>
-            <strong>Effective date:</strong>
-            <span id="effectiveDate">25 Dec 2025</span>
+          <div class="row">
+            <div>
+              <strong>Effective date:</strong>
+              <span id="effectiveDate">04 Jan 2026</span>
+            </div>
+            <div>
+              <strong>Contact:</strong>
+              <a id="supportEmailLink" href="mailto:samk078688@gmail.com"
+                >samk078688@gmail.com</a
+              >
+            </div>
           </div>
-          <div>
-            <strong>Contact:</strong>
-            <a id="supportEmailLink" href="mailto:samk078688@gmail.com"
-              >samk078688@gmail.com</a
-            >
-          </div>
-          <div>
-            <strong>Policy URL:</strong>
-            <a
-              id="policyUrlLink"
-              href="https://saaim7824.github.io/money-trail-legal/privacy-policy.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Open</a
-            >
+          <div class="row" style="margin-top: 6px">
+            <div>
+              <strong>Privacy URL:</strong>
+              <a id="privacyUrlLink" href="#" target="_blank" rel="noopener noreferrer">Open</a>
+            </div>
+            <div>
+              <strong>Account deletion:</strong>
+              <a id="deleteUrlLink" href="#" target="_blank" rel="noopener noreferrer">Open</a>
+            </div>
           </div>
         </div>
       </header>
@@ -170,7 +192,7 @@
             <strong>Offline-first:</strong> your finance data is stored on your
             device by default.
           </li>
-          <li>
+          <li id="syncLine">
             <strong>Cloud Sync is optional and Pro-only.</strong> If enabled, we
             sync data to support multi-device restore and shared profiles.
           </li>
@@ -178,13 +200,13 @@
             <strong>Google Drive backup is optional.</strong> If enabled, the app
             uploads a backup file to your Google Drive (app-private storage).
           </li>
-          <li>
-            We use Firebase Analytics/Crashlytics to understand performance and
-            fix crashes.
+          <li id="adsLine">
+            Free users may see ads (for example via Google AdMob), depending on
+            your build and settings.
           </li>
           <li>
-            Free users may see ads via Google AdMob (depending on your build and
-            settings).
+            If you purchase Pro, we may verify subscription entitlement using a
+            purchase token and product ID.
           </li>
           <li>We do not sell your personal information.</li>
         </ul>
@@ -197,10 +219,9 @@
         <h3>A) Data you enter in the app</h3>
         <ul>
           <li>
-            Transactions (amount, date/time, category, notes/description,
-            payment mode).
+            Transactions (amount, date/time, category, notes/description, payment mode).
           </li>
-          <li>Accounts, budgets, debts, goals, tags, rules, and settings.</li>
+          <li>Accounts, budgets, debts, tags, rules, and settings.</li>
           <li>Optional attachments/receipts (only if you add them).</li>
         </ul>
 
@@ -209,23 +230,22 @@
         <h3>B) Account & authentication data</h3>
         <ul>
           <li>
-            Email address and basic profile info from Google Sign-In (for sign-in
-            and enabled services).
+            Email address and basic profile info from Google Sign-In (for sign-in and enabled services).
           </li>
           <li>Authentication identifiers/tokens required to keep you signed in.</li>
         </ul>
 
         <div class="divider"></div>
 
-        <h3>C) Cloud Sync & Shared Profiles data (Pro-only, optional)</h3>
+        <h3>C) Cloud Sync & Shared Profiles data (optional)</h3>
         <ul>
           <li>
-            If you enable Cloud Sync, your finance data may be uploaded to our
-            backend to sync across devices and support shared profiles.
+            If you enable Cloud Sync, your finance data may be uploaded to our backend (Supabase)
+            to sync across devices and support shared profiles.
           </li>
           <li>
-            Shared profiles may allow invited/accepted members to access data
-            inside that shared profile (depending on role/permissions).
+            Shared profiles may allow invited/accepted members to access data inside that shared profile
+            (depending on role/permissions).
           </li>
         </ul>
 
@@ -234,32 +254,51 @@
         <h3>D) Google Drive backup data (optional)</h3>
         <ul>
           <li>
-            If enabled, the app uploads a backup file to your Google Drive in an
-            app-private storage area. You can revoke Drive access in your Google
-            Account settings.
+            If enabled, the app uploads a backup file to your Google Drive in an app-private storage area.
+            You can revoke Drive access in your Google Account settings.
           </li>
         </ul>
 
         <div class="divider"></div>
 
-        <h3>E) Device, usage & diagnostics data</h3>
+        <h3>E) Feedback you send (optional)</h3>
         <ul>
-          <li>App version, device model, OS version, language/locale.</li>
-          <li>Crash reports and diagnostics (Firebase Crashlytics).</li>
-          <li>Basic usage events (Firebase Analytics), if enabled.</li>
+          <li>
+            If you submit feedback from inside the app, we collect the email you provide and the message content
+            so we can respond and improve the app.
+          </li>
         </ul>
 
         <div class="divider"></div>
 
-        <h3>F) Advertising data (free users, if ads are enabled)</h3>
+        <h3>F) Notifications (optional)</h3>
         <ul>
           <li>
-            Advertising ID (where available), IP address (approximate location),
-            ad impressions/clicks, and diagnostics.
+            The app may schedule on-device reminders (local notifications) if you enable them.
+          </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>G) Advertising data (free users, if ads are enabled)</h3>
+        <ul>
+          <li>
+            Advertising ID (where available), IP address (approximate location), ad impressions/clicks,
+            and diagnostics may be processed by ad partners for ad delivery and measurement.
           </li>
           <li>
-            Ad delivery and measurement signals (personalization depends on your
-            device/region settings).
+            Personalization depends on your device settings and region. You can limit ad personalization
+            in Android privacy settings (availability varies).
+          </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>H) Subscription / Pro purchase data (if you buy Pro)</h3>
+        <ul>
+          <li>
+            We may process identifiers such as product ID and purchase token to verify subscription entitlement
+            and prevent fraud/abuse.
           </li>
         </ul>
       </section>
@@ -270,79 +309,46 @@
           <li>Provide core features like tracking, reports, and insights.</li>
           <li>Authenticate your account and keep you signed in.</li>
           <li>
-            Sync and restore your data across devices (Cloud Sync) when enabled
-            (Pro-only).
+            Sync and restore your data across devices (Cloud Sync) when enabled.
           </li>
           <li>Enable shared profiles when Cloud Sync is enabled.</li>
           <li>Back up and restore your data to Google Drive when enabled.</li>
-          <li>Fix crashes and improve performance (Crashlytics).</li>
-          <li>Improve features using usage insights (Analytics).</li>
-          <li>
-            Show and measure ads for free users (AdMob), if ads are enabled.
-          </li>
+          <li>Respond to feedback and support requests.</li>
+          <li id="adsUseLine">Show and measure ads for free users, if ads are enabled.</li>
+          <li>Verify subscriptions and activate Pro access when applicable.</li>
         </ul>
       </section>
 
       <section class="card">
-        <h2>5) Legal bases</h2>
-        <p>
-          Depending on your location, we process information under one or more of
-          these legal bases:
-        </p>
+        <h2>5) Where your data is stored</h2>
         <ul>
           <li>
-            <strong>Performance of a contract</strong> (to provide requested
-            features like sync/backup).
+            <strong>On-device storage:</strong> your finance data is stored locally on your phone by default.
           </li>
           <li>
-            <strong>Consent</strong> (for optional features like Cloud Sync/Drive
-            backup and certain analytics settings where required).
+            <strong>Cloud Sync (Supabase):</strong> if you enable Cloud Sync, your finance data may be uploaded
+            to our backend to sync across devices and support shared profiles.
           </li>
           <li>
-            <strong>Legitimate interests</strong> (security, fraud prevention,
-            product improvement).
-          </li>
-          <li><strong>Legal obligations</strong> (compliance with applicable law).</li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2>6) Where your data is stored</h2>
-        <ul>
-          <li>
-            <strong>On-device storage:</strong> your finance data is stored
-            locally on your phone by default.
-          </li>
-          <li>
-            <strong>Cloud Sync (Supabase):</strong> if you enable Cloud Sync
-            (Pro-only), your finance data may be uploaded to our backend to sync
-            across devices and support shared profiles.
-          </li>
-          <li>
-            <strong>Google Drive backup:</strong> if you enable Drive backup, the
-            app may store a backup file in your Google Drive under your account
-            (app-private storage). You can revoke Drive access any time in your
-            Google Account settings.
+            <strong>Google Drive backup:</strong> if you enable Drive backup, the app may store a backup file in
+            your Google Drive under your account (app-private storage). You can revoke Drive access any time.
           </li>
         </ul>
       </section>
 
       <section class="card">
-        <h2>7) Sharing & disclosure</h2>
+        <h2>6) Sharing & disclosure</h2>
         <p>We do not sell your personal data. We only share data in these cases:</p>
         <ul>
           <li>
-            <strong>Service providers</strong> that help run enabled features
-            (authentication, sync/hosting, crash reporting, analytics,
-            notifications).
+            <strong>Service providers</strong> that help run enabled features (authentication, sync/hosting,
+            backup/restore, support).
+          </li>
+          <li id="adsShareLine">
+            <strong>Advertising partners</strong> for ads and measurement when ads are enabled for free users.
           </li>
           <li>
-            <strong>Advertising partners</strong> for ads and measurement (AdMob)
-            when ads are enabled for free users.
-          </li>
-          <li>
-            <strong>Shared profiles</strong> (only if you enable Cloud Sync and
-            invite/accept members).
+            <strong>Shared profiles</strong> (only if you enable Cloud Sync and invite/accept members).
           </li>
           <li>When you export/share reports or files yourself.</li>
           <li>To comply with law, enforce rights, or prevent fraud/abuse.</li>
@@ -355,80 +361,48 @@
           <li>Google Sign-In (authentication)</li>
           <li>Google Drive API (backup/restore when enabled)</li>
           <li>Supabase (Cloud Sync backend when enabled)</li>
-          <li>Firebase Analytics (usage analytics)</li>
-          <li>Firebase Crashlytics (crash reporting/diagnostics)</li>
-          <li>Firebase Cloud Messaging (optional notifications/reminders)</li>
-          <li>Google AdMob / Google Mobile Ads SDK (ads for free users, if enabled)</li>
+          <li>Google Play Billing (subscriptions / Pro purchase verification)</li>
+          <li id="admobServiceLine">Google AdMob / Google Mobile Ads SDK (ads for free users, if enabled)</li>
         </ul>
       </section>
 
       <section class="card">
-        <h2>8) International transfers</h2>
-        <p>
-          Some service providers may process data on servers in various
-          countries. When this happens, we rely on appropriate safeguards and
-          provider security practices.
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>9) Data retention</h2>
+        <h2>7) Data retention</h2>
         <ul>
-          <li>
-            On-device data stays until you delete it, clear app storage, or
-            uninstall.
-          </li>
-          <li>
-            If Cloud Sync is enabled, cloud data may remain until you delete it
-            in the app or request deletion.
-          </li>
-          <li>
-            Crash/diagnostic logs are retained for a limited period for
-            debugging.
-          </li>
+          <li>On-device data stays until you delete it, clear app storage, or uninstall.</li>
+          <li>If Cloud Sync is enabled, cloud data may remain until you delete it in the app or request deletion.</li>
           <li>Google Drive backup files remain in your Drive until you delete them.</li>
+          <li>Subscription verification records may be kept for entitlement and audit purposes.</li>
         </ul>
       </section>
 
       <section class="card">
-        <h2>10) Security</h2>
+        <h2>8) Security</h2>
         <p>
-          We use reasonable safeguards such as encryption in transit (HTTPS) for
-          network communications. No system is 100% secure, but we work to reduce
-          risk.
+          We use reasonable safeguards such as encryption in transit (HTTPS) for network communications.
+          No system is 100% secure, but we work to reduce risk.
         </p>
       </section>
 
       <section class="card">
-        <h2>11) Your choices & rights</h2>
+        <h2>9) Your choices & rights</h2>
         <ul>
           <li>Use the app offline without enabling Cloud Sync.</li>
-          <li>Enable/disable Cloud Sync in Settings (Pro-only).</li>
+          <li>Enable/disable Cloud Sync in Settings (availability depends on your plan/build).</li>
+          <li>Enable/disable Google Drive backup in Settings and revoke access in Google Account settings.</li>
+          <li>Delete local data by deleting records, clearing app storage, or uninstalling.</li>
           <li>
-            Enable/disable Google Drive backup in Settings and revoke access in
-            your Google Account settings.
+            Request cloud/account deletion using the deletion page:
+            <a id="deleteUrlInline" href="#" target="_blank" rel="noopener noreferrer">open</a>
           </li>
-          <li>Export your data using in-app export tools (if available).</li>
-          <li>
-            Delete local data by deleting records, clearing app storage, or
-            uninstalling.
-          </li>
-          <li>
-            Request cloud/account deletion by contacting
-            <a id="supportEmailLink2" href="mailto:samk078688@gmail.com"
-              >support</a
-            >. We may ask you to verify account ownership before completing
-            deletion.
-          </li>
-          <li>
-            Ads: limit ad personalization via Android privacy settings
-            (availability depends on device/region).
+          <li id="adsRightsLine">
+            Ads: limit ad personalization via Android privacy settings (availability depends on device/region).
           </li>
         </ul>
       </section>
 
       <section class="card">
-        <h2>12) Children’s privacy</h2>
+        <h2>10) Children’s privacy</h2>
         <p>
           <strong id="appName2">Money Trail</strong> is not designed for children.
           We do not knowingly collect personal information from children. If you
@@ -438,44 +412,35 @@
       </section>
 
       <section class="card">
-        <h2>13) Changes to this policy</h2>
+        <h2>11) Changes to this policy</h2>
         <p>
           We may update this Privacy Policy from time to time. When we do, we
           will update the effective date and may notify you within the app where
           appropriate.
         </p>
+        <p class="note">
+          Tip: If you add new SDKs (for example ads/analytics) or change what data you collect,
+          update this policy and your Play Console Data Safety form.
+        </p>
       </section>
 
       <section class="card">
-        <h2>14) Contact us</h2>
-        <p>
-          If you have questions about this Privacy Policy or how your data is
-          handled, contact us:
-        </p>
+        <h2>12) Contact us</h2>
+        <p>If you have questions about this Privacy Policy, contact us:</p>
         <ul>
           <li>
             <strong>Email:</strong>
-            <a id="supportEmailLink3" href="mailto:samk078688@gmail.com"
-              >samk078688@gmail.com</a
-            >
+            <a id="supportEmailLink3" href="mailto:samk078688@gmail.com">samk078688@gmail.com</a>
           </li>
           <li>
-            <strong>Policy URL:</strong>
-            <a
-              id="policyUrlLink2"
-              href="https://saaim7824.github.io/money-trail-legal/privacy-policy.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Open</a
-            >
+            <strong>Privacy URL:</strong>
+            <a id="privacyUrlLink2" href="#" target="_blank" rel="noopener noreferrer">Open</a>
+          </li>
+          <li>
+            <strong>Deletion URL:</strong>
+            <a id="deleteUrlLink2" href="#" target="_blank" rel="noopener noreferrer">Open</a>
           </li>
         </ul>
-        <p class="note">
-          Note: This document is provided for informational purposes and should
-          be reviewed by a qualified legal professional for your jurisdiction,
-          especially if you change features, add new SDKs, or target additional
-          regions.
-        </p>
       </section>
 
       <footer class="meta" style="margin-top: 18px">
@@ -489,8 +454,11 @@
         const APP_NAME = cfg.APP_NAME || "Money Trail";
         const DEVELOPER_NAME = cfg.DEVELOPER_NAME || "Sam";
         const SUPPORT_EMAIL = cfg.SUPPORT_EMAIL || "support@example.com";
-        const WEBSITE_URL = cfg.WEBSITE_URL || location.href;
+        const PRIVACY_URL = cfg.PRIVACY_URL || location.href;
+        const DELETE_URL = cfg.DELETE_URL || "#";
         const EFFECTIVE_DATE = cfg.EFFECTIVE_DATE || "";
+        const CLOUD_SYNC_IS_PRO_ONLY = cfg.CLOUD_SYNC_IS_PRO_ONLY === true;
+        const ADS_MAY_BE_ENABLED = cfg.ADS_MAY_BE_ENABLED !== false;
 
         const setText = (id, v) => {
           const el = document.getElementById(id);
@@ -507,17 +475,44 @@
         setText("appNameFooter", APP_NAME);
         setText("devName", DEVELOPER_NAME);
         setText("effectiveDate", EFFECTIVE_DATE);
-
-        setHref("supportEmailLink", "mailto:" + SUPPORT_EMAIL);
-        setHref("supportEmailLink2", "mailto:" + SUPPORT_EMAIL);
-        setHref("supportEmailLink3", "mailto:" + SUPPORT_EMAIL);
-        document.getElementById("supportEmailLink").textContent = SUPPORT_EMAIL;
-        document.getElementById("supportEmailLink3").textContent = SUPPORT_EMAIL;
-
-        setHref("policyUrlLink", WEBSITE_URL);
-        setHref("policyUrlLink2", WEBSITE_URL);
-
         setText("year", new Date().getFullYear());
+
+        // email
+        setHref("supportEmailLink", "mailto:" + SUPPORT_EMAIL);
+        setHref("supportEmailLink3", "mailto:" + SUPPORT_EMAIL);
+        const email1 = document.getElementById("supportEmailLink");
+        const email3 = document.getElementById("supportEmailLink3");
+        if (email1) email1.textContent = SUPPORT_EMAIL;
+        if (email3) email3.textContent = SUPPORT_EMAIL;
+
+        // urls
+        setHref("privacyUrlLink", PRIVACY_URL);
+        setHref("privacyUrlLink2", PRIVACY_URL);
+        setHref("deleteUrlLink", DELETE_URL);
+        setHref("deleteUrlLink2", DELETE_URL);
+        setHref("deleteUrlInline", DELETE_URL);
+
+        // feature flags
+        const syncLine = document.getElementById("syncLine");
+        if (syncLine) {
+          syncLine.innerHTML = CLOUD_SYNC_IS_PRO_ONLY
+            ? "<strong>Cloud Sync is optional and Pro-only.</strong> If enabled, we sync data to support multi-device restore and shared profiles."
+            : "<strong>Cloud Sync is optional.</strong> If enabled, we sync data to support multi-device restore and shared profiles.";
+        }
+
+        const idsForAds = [
+          "adsLine",
+          "adsUseLine",
+          "adsShareLine",
+          "admobServiceLine",
+          "adsRightsLine"
+        ];
+        if (!ADS_MAY_BE_ENABLED) {
+          idsForAds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = "none";
+          });
+        }
       })();
     </script>
   </body>
